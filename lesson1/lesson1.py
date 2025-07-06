@@ -28,6 +28,8 @@ def task2(number: int) -> int:
 # user_number = int(input("Введите число: "))
 
 # print ("Сумма чисел от 1 до ", user_number, " = ", task2(user_number))
+# Изменение
+
 
 
 
