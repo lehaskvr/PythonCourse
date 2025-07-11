@@ -28,17 +28,12 @@ def sort_list_of_int(test_list:list[int], condition:bool) -> list[int]:
         return test_list[::-1]
 
 def average_in_string(s1:str) -> int:
-    list1 = []
     b = 0
     c = 0
     for n in s1:
-        list1.append(n)
-    for n in range(len(list1)):
-        if list1[n] != int:
-            continue
-        else:
-            list1[n] = int(list1[n])
-            b += list1[n]
+        if n.isdigit():
+            n = int(n)
+            b += n
             c += 1
     if b == 0:
         print("Цифры не найдены")
@@ -48,12 +43,13 @@ def average_in_string(s1:str) -> int:
 
 def cheking_for_prime_numbers(number1:int):
     for n in range(2, number1):
-        number1 % n
-    if number1 % n != 0:
-        print("Число простое")
-    else:
-        print("Число не простое")
-
+        if number1 % n == 0:
+            print(f"Number {number1} isn't prime!")
+            return
+        else:
+            continue
+    print(f"Number {number1} is prime!")
+	
 
 def main():
     test_string1 = "hello"
@@ -61,18 +57,18 @@ def main():
     first_string = "пока"
     second_string = "привет"
     test_list1 = [5, 2, 9, 1, 5, 6]
-    condition1 = False
-    condition2 = True
+    condition1 = True
+    condition2 = False
     string1 = "abc123def"
     string2 = "hello"
     test_number = 5
-    test_number1 = 4
+    test_number1 = 99
     print(creating_a_string(first_string, second_string))
     print(creating_a_string(test_string1, test_string2))
     print(sort_list_of_int(test_list1, condition1))
     print(sort_list_of_int(test_list1, condition2))
-    print(average_in_string(string1))
-    print(average_in_string(string2))
+    average_in_string(string1)
+    average_in_string(string2)
     cheking_for_prime_numbers(test_number)
     cheking_for_prime_numbers(test_number1)
 if __name__ == "__main__":
