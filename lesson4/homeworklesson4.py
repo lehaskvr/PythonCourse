@@ -17,16 +17,15 @@ def creating_a_string(first_string:str, second_string:str) -> str:
     result_string = "".join(result_string)
     return result_string
 
-def sort_list_of_int(test_list:list[int], condition:bool) -> list[int]:
-    for n in range(len(test_list)):
-        for a in range(len(test_list) - n - 1):
-            if test_list[a] > test_list[a + 1]:
-                test_list[a], test_list[a + 1] = test_list[a + 1], test_list[a]
-    if condition == True:
-        return test_list
+def bubble_sort(list_to_sort:list[int], desc:bool = False) -> list[int]:
+    for n in range(len(list_to_sort)):
+        for a in range(len(list_to_sort) - n - 1):
+            if list_to_sort[a] > list_to_sort[a + 1]:
+                list_to_sort[a], list_to_sort[a + 1] = list_to_sort[a + 1], list_to_sort[a]
+    if not desc:
+        return list_to_sort
     else:
-        return test_list[::-1]
-
+        return list_to_sort[::-1]
 def average_in_string(s1:str) -> int:
     b = 0
     c = 0
@@ -57,16 +56,16 @@ def main():
     first_string = "пока"
     second_string = "привет"
     test_list1 = [5, 2, 9, 1, 5, 6]
-    condition1 = True
-    condition2 = False
+    desc = True
+    desc1 =False
     string1 = "abc123def"
     string2 = "hello"
     test_number = 5
     test_number1 = 99
     print(creating_a_string(first_string, second_string))
     print(creating_a_string(test_string1, test_string2))
-    print(sort_list_of_int(test_list1, condition1))
-    print(sort_list_of_int(test_list1, condition2))
+    print(bubble_sort(test_list1, desc))
+    print(bubble_sort(test_list1, desc1))
     average_in_string(string1)
     average_in_string(string2)
     cheking_for_prime_numbers(test_number)
