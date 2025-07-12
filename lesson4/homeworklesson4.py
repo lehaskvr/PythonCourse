@@ -26,6 +26,7 @@ def bubble_sort(list_to_sort:list[int], desc:bool = False) -> list[int]:
         return list_to_sort
     else:
         return list_to_sort[::-1]
+    
 def average_in_string(s1:str) -> int:
     b = 0
     c = 0
@@ -49,6 +50,11 @@ def cheking_for_prime_numbers(number1:int):
             continue
     print(f"Number {number1} is prime!")
 	
+def intersection_of_sets(set1:set, set2:set) -> set:
+    common = set.intersection(set1, set2)
+    set1 = set.difference(set1, set2)
+    print("common =", common, "new_first_set =", set1)
+    
 
 def main():
     test_string1 = "hello"
@@ -62,6 +68,10 @@ def main():
     string2 = "hello"
     test_number = 5
     test_number1 = 99
+    test_set = {1, 2, 3, 4, 5}
+    test_set1 = {4, 5, 6, 7}
+    test_set2 = {99, 67, 103, 44, 22, 1, 0}
+    test_set3 = {99, 103, 0, 56, 23}
     print(creating_a_string(first_string, second_string))
     print(creating_a_string(test_string1, test_string2))
     print(bubble_sort(test_list1, desc))
@@ -70,6 +80,8 @@ def main():
     average_in_string(string2)
     cheking_for_prime_numbers(test_number)
     cheking_for_prime_numbers(test_number1)
+    intersection_of_sets(test_set, test_set1)
+    intersection_of_sets(test_set2, test_set3)
 if __name__ == "__main__":
     main()
 
