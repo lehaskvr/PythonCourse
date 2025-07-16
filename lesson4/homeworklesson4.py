@@ -27,33 +27,31 @@ def bubble_sort(list_to_sort:list[int], desc:bool = False) -> list[int]:
     else:
         return list_to_sort[::-1]
     
-def average_in_string(s1:str) -> int:
+def average_in_string(s1:str) -> tuple[int, float] | None:
     b = 0
     c = 0
     for n in s1:
         if n.isdigit():
-            n = int(n)
-            b += n
+            b += int(n)
             c += 1
     if b == 0:
-        print("Цифры не найдены")
+        return 
     else:
         average = b / c
-        print("Сумма цифр:", b, "Среднее арифмитическое:", average)
+        return b, average
 
-def cheking_for_prime_numbers(number1:int):
+def is_prime(number1:int) -> bool:
     for n in range(2, number1):
         if number1 % n == 0:
-            print(f"Number {number1} isn't prime!")
             return
         else:
             continue
-    print(f"Number {number1} is prime!")
+    return True
 	
-def intersection_of_sets(set1:set, set2:set) -> set:
+def intersection_of_sets(set1:set, set2:set) -> tuple[set, set]:
     common = set.intersection(set1, set2)
     set1 = set.difference(set1, set2)
-    print("common =", common, "new_first_set =", set1)
+    return common, set1
     
 
 def main():
@@ -76,12 +74,28 @@ def main():
     print(creating_a_string(test_string1, test_string2))
     print(bubble_sort(test_list1, desc))
     print(bubble_sort(test_list1, desc1))
-    average_in_string(string1)
-    average_in_string(string2)
-    cheking_for_prime_numbers(test_number)
-    cheking_for_prime_numbers(test_number1)
-    intersection_of_sets(test_set, test_set1)
-    intersection_of_sets(test_set2, test_set3)
+    if average_in_string(string1):
+        sum, ave = average_in_string(string1)
+        print(f"Сумма цифр: {sum},  среднее арифмитическое: {ave} ")
+    else:
+        print("Цифры не найдены")
+    if average_in_string(string2):
+        sum1, ave1 = average_in_string(string2)
+        print(f"Сумма цифр: {sum1}, среднее арифмитическое: {ave1}")
+    else:
+        print("Цифры не найдены")
+    if is_prime(test_number):
+        print(f"Number {test_number} is prime!")
+    else:
+        print(f"Number {test_number} isn't prime!")
+    if is_prime(test_number1):
+        print(f"Number {test_number1} is prime!")
+    else:
+        print(f"Number {test_number1} isn't prime!")
+    set1, set2 = intersection_of_sets(test_set, test_set1)
+    set3, set4 = intersection_of_sets(test_set2, test_set3)    
+    print(f"Пересечение списков: {set1}, новый первый список: {set2}")
+    print(f"Пересечение списков: {set3}, новый первый список: {set4}")
 if __name__ == "__main__":
     main()
 
