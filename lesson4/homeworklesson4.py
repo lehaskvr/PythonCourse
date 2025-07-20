@@ -17,6 +17,22 @@ def creating_a_string(first_string:str, second_string:str) -> str:
     result_string = "".join(result_string)
     return result_string
 
+def creating_string(s1: str, s2: str) -> str:
+    min_len = min(len(s1), len(s2))
+    res = ""
+    for i in range(min_len):
+        res += s1[i]
+        res += s2[-(i + 1)]
+
+    if len(s1) > min_len:
+        res += s1[min_len:]
+
+    if len(s2) > min_len:
+        res += s2[:len(s2) - min_len]
+
+    return res
+
+
 def bubble_sort(list_to_sort:list[int], desc:bool = False) -> list[int]:
     for n in range(len(list_to_sort)):
         for a in range(len(list_to_sort) - n - 1):
@@ -49,9 +65,7 @@ def is_prime(number1:int) -> bool:
     return True
 	
 def intersection_of_sets(set1:set, set2:set) -> tuple[set, set]:
-    common = set.intersection(set1, set2)
-    set1 = set.difference(set1, set2)
-    return common, set1
+    return set.intersection(set1, set2), set.difference(set1, set2)
     
 
 def main():
@@ -70,8 +84,8 @@ def main():
     test_set1 = {4, 5, 6, 7}
     test_set2 = {99, 67, 103, 44, 22, 1, 0}
     test_set3 = {99, 103, 0, 56, 23}
-    print(creating_a_string(first_string, second_string))
-    print(creating_a_string(test_string1, test_string2))
+    print(creating_string(first_string, second_string))
+    print(creating_string(test_string1, test_string2))
     print(bubble_sort(test_list1, desc))
     print(bubble_sort(test_list1, desc1))
     if average_in_string(string1):
@@ -98,4 +112,3 @@ def main():
     print(f"Пересечение списков: {set3}, новый первый список: {set4}")
 if __name__ == "__main__":
     main()
-
