@@ -11,16 +11,15 @@ class Shape(ABC):
     def perimeter(self):
         pass
 
+
 class Circle(Shape):
     def __init__(self, radius):
         self.radius = radius
 
     def area(self):
-        super().area()
         return round(math.pi * self.radius**2, 2)
 
     def perimeter(self):
-        super().perimeter()
         return round(2 * math.pi * self.radius, 2)
 
 
@@ -29,11 +28,9 @@ class Square(Shape):
         self.side = side
 
     def area(self):
-        super().area()
         return self.side**2
 
     def perimeter(self):
-        super().perimeter()
         return 4 * self.side
 
 

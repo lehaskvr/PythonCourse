@@ -10,9 +10,6 @@ class Vehicle:
 
 
 class Bus(Vehicle):
-    def __init__(self, name, mileage, capacity):
-        super().__init__(name, mileage, capacity)
-
     def technical_service(self):
         return self.capacity * 10
 
