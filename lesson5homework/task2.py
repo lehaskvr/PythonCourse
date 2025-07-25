@@ -14,7 +14,6 @@ class Shape(ABC):
 class Circle(Shape):
     def __init__(self, radius):
         self.radius = radius
-        super().__init__()
 
     def area(self):
         super().area()
@@ -27,7 +26,6 @@ class Circle(Shape):
 
 class Square(Shape):
     def __init__(self, side):
-        super().__init__()
         self.side = side
 
     def area(self):
@@ -39,7 +37,7 @@ class Square(Shape):
         return 4 * self.side
 
 
-class Triangle:
+class Triangle(Shape):
     def __init__(self, side):
         self.side = side
 
