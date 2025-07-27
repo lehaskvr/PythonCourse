@@ -11,6 +11,17 @@ class Shape(ABC):
     def perimeter(self):
         pass
 
+    @staticmethod
+    def compare_areas(a: "Shape", b: "Shape"):
+        area1 = a.area()
+        area2 = b.area()
+        if area1 > area2:
+            return 1
+        elif area1 < area2:
+            return 2
+        else:
+            return 0
+
 
 class Circle(Shape):
     def __init__(self, radius):
@@ -48,6 +59,11 @@ class Triangle(Shape):
 circle = Circle(5)
 print(f"Круг с радиусом 5: площадь ≈ {circle.area()} периметр ≈ {circle.perimeter()}")
 square = Square(7)
-print(f"Квадрат со стороной 7: площадь = {square.area()}, периметр = {square.perimeter()}")
+print(
+    f"Квадрат со стороной 7: площадь = {square.area()}, периметр = {square.perimeter()}"
+)
 triangle = Triangle(6)
-print(f"Треугольник со стороной 6: площадь ≈ {triangle.area()}, периметр = {triangle.perimeter()}")
+print(
+    f"Треугольник со стороной 6: площадь ≈ {triangle.area()}, периметр = {triangle.perimeter()}"
+)
+print(Circle.compare_areas(circle, square))

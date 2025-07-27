@@ -51,8 +51,8 @@ class Warrior(Character):
     def special_ability(self):
         print("Переход в режим ярости")
         if self.counter_for_special > 0:
-            self.base_attack = self.base_attack * 2
-            self.counter_for_special = self.counter_for_special - 1
+            self.base_attack *= 2
+            self.counter_for_special -= 1
             return f"Режима ярости хватит ещё на {self.counter_for_special} хода"
         else:
             self.counter_for_special = 3
@@ -73,11 +73,13 @@ class Archer(Character):
         self.base_attack = 40
 
     def accurate_shot(self, target):
-        print(f"{target} получает критический урон: {self.critical_attack} единиц урона")
+        print(
+            f"{target} получает критический урон: {self.critical_attack} единиц урона"
+        )
 
     def take_damage(self, damage):
         b = random(1, 10)
-        if b == 1 or b == 2 or b == 3:
+        if b in [1, 2, 3]:
             return "Перекат"
         else:
             return super().take_damage(damage)
@@ -92,7 +94,9 @@ class Mage(Character):
 
     def fireball(self, targets):
         self.current_mana = self.current_mana - 30
-        print(f"{targets} были атакованы огненным шаром и получили {self.fireball_attack} единиц урона")
+        print(
+            f"{targets} были атакованы огненным шаром и получили {self.fireball_attack} единиц урона"
+        )
 
     def mana_recovery(self):
         if self.current_mana < self.max_mana:
