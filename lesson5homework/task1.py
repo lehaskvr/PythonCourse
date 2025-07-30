@@ -49,11 +49,20 @@ class Vehicle:
     def fare(self):
         fare = self.capacity * 100
         return fare
+    
+    @staticmethod
+    def average_fare(a: list["Bus"], n: int  ):
+        n = len(a)
+        sum_fare = 0
+        for i in a:
+            sum_fare += i.total_fare()
+        return f"Средняя стоимость в группе автобусов: {round(sum_fare / n)} руб."
+
 
 
 class Bus(Vehicle):
     def technical_service(self):
-        return self.capacity * 15
+        return self.capacity * 10
 
     def ecological_dues(self):
         return self.capacity * 5
@@ -73,4 +82,11 @@ class Bus(Vehicle):
 
 school_bus = Bus("Школьный Volvo", 12, 50)
 
+school_bus1 = Bus("Школьный Mersedes", 14, 62)
+
+school_bus2 = Bus("Школный BMW", 45, 238)
+
+group_of_buses = [school_bus, school_bus1, school_bus2]
+
 school_bus.get_info()
+print(Bus.average_fare(group_of_buses, 3))

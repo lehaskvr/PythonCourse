@@ -25,35 +25,95 @@ class Shape(ABC):
 
 class Circle(Shape):
     def __init__(self, radius):
-        self.radius = radius
+        if radius > 0:
+            self._radius = radius
+        else:
+            raise ValueError("Радиус не может быть отрицательным")
+
+    @property
+    def radius(self):
+        return self._radius
+
+    @radius.setter
+    def radius(self, new_radius):
+        if new_radius > 0:
+            self._radius = new_radius
+        else:
+            raise ValueError("Радиус не может быть отрицательным")
 
     def area(self):
-        return round(math.pi * self.radius**2, 2)
+        return round(math.pi * self._radius**2, 2)
 
     def perimeter(self):
-        return round(2 * math.pi * self.radius, 2)
+        return round(2 * math.pi * self._radius, 2)
+
+    def get_shape_info(self):
+        print(f"Тип фигуры: круг")
+        print(f"Радиус круга: {self._radius}")
+        print(f"Площадь: {self.area()}")
+        print(f"Периметр: {self.perimeter()}")
 
 
 class Square(Shape):
     def __init__(self, side):
-        self.side = side
+        if side > 0:
+            self._side = side
+        else:
+            raise ValueError("Сторона не может быть отрицательной")
+
+    @property
+    def side(self):
+        return self._side
+
+    @side.setter
+    def side(self, new_side):
+        if new_side > 0:
+            self._side = new_side
+        else:
+            raise ValueError("Сторона не может быть отрицательной")
 
     def area(self):
-        return self.side**2
+        return self._side**2
 
     def perimeter(self):
-        return 4 * self.side
+        return 4 * self._side
+
+    def get_shape_info(self):
+        print(f"Тип фигуры: квадрат")
+        print(f"Сторона квадрата: {self._side}")
+        print(f"Площадь: {self.area()}")
+        print(f"Периметр: {self.perimeter()}")
 
 
 class Triangle(Shape):
     def __init__(self, side):
-        self.side = side
+        if side > 0:
+            self._side = side
+        else:
+            raise ValueError("Сторона не может быть отрицательной")
+
+    @property
+    def side(self):
+        return self._side
+
+    @side.setter
+    def side(self, new_side):
+        if new_side > 0:
+            self._side = new_side
+        else:
+            raise ValueError("Сторона не может быть отрицательной")
 
     def area(self):
-        return round((math.sqrt(3) / 4) * self.side**2, 2)
+        return round((math.sqrt(3) / 4) * self._side**2, 2)
 
     def perimeter(self):
-        return 3 * self.side
+        return 3 * self._side
+
+    def get_shape_info(self):
+        print(f"Тип фигуры: треугольник")
+        print(f"Сторона треугольника: {self._side}")
+        print(f"Площадь: {self.area()}")
+        print(f"Периметр: {self.perimeter()}")
 
 
 circle = Circle(5)
@@ -67,3 +127,6 @@ print(
     f"Треугольник со стороной 6: площадь ≈ {triangle.area()}, периметр = {triangle.perimeter()}"
 )
 print(Circle.compare_areas(circle, square))
+circle.get_shape_info()
+square.get_shape_info()
+triangle.get_shape_info()
