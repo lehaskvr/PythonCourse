@@ -9,6 +9,29 @@ class CharacterClass(Enum):
     MAGE = "Маг"
 
 
+class Equipment:
+    def __init__(self, name):
+        self.name = name
+
+
+class Weapon(Equipment):
+    def __init__(self, name):
+        super().__init__(name)
+        self.base_attack = 20
+
+
+class Armor(Equipment):
+    def __init__(self, name):
+        super().__init__(name)
+        self.max_health = 100
+
+
+class Accessory(Equipment):
+    def __init__(self, name):
+        super().__init__(name)
+        self.max_mana = 30
+
+
 class Character(ABC):
     def __init__(self, name, character_class):
         self.name = name
@@ -23,6 +46,21 @@ class Character(ABC):
         self.critical_attack = 120
         self.equipment = {}
         self.active_effects = []
+
+    @staticmethod
+    def equip_equipment(a: "Equipment", b: "Character"):
+        if isinstance(a, Weapon):
+            b.equipment["Оружие"] = 1
+            b.base_attack += a.base_attack
+            return f"атака увеличена"
+        elif isinstance(a, Armor):
+            b.equipment["Броня"] = 2
+            b.max_health += a.max_health
+            return f"Здорвье увеличино"
+        elif isinstance(a, Accessory):
+            b.equipment["Акссесуар"] = 3
+            b.max_mana += a.max_mana
+            return f"Мана увеличена"
 
     @abstractmethod
     def special_ability(self, target):
@@ -93,14 +131,14 @@ class Mage(Character):
         self.fireball_attack = 30
 
     def fireball(self, targets):
-        self.current_mana = self.current_mana - 30
+        self.current_mana -= 30
         print(
             f"{targets} были атакованы огненным шаром и получили {self.fireball_attack} единиц урона"
         )
 
     def mana_recovery(self):
         if self.current_mana < self.max_mana:
-            self.current_mana = self.current_mana + 10
+            self.current_mana += 10
             return f"У вас есть {self.current_mana} единиц маны"
         else:
             return "Мана полностью восстановлена"
