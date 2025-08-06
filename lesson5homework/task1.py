@@ -51,10 +51,10 @@ class Vehicle:
         return fare
     
     @staticmethod
-    def average_fare(a: list["Bus"], n: int  ):
-        n = len(a)
+    def average_fare(group_of_buses: list["Vehicle"], n: int  ):
+        n = len(group_of_buses)
         sum_fare = 0
-        for i in a:
+        for i in group_of_buses:
             sum_fare += i.total_fare()
         return f"Средняя стоимость в группе автобусов: {round(sum_fare / n)} руб."
 
@@ -84,7 +84,7 @@ school_bus = Bus("Школьный Volvo", 12, 50)
 
 school_bus1 = Bus("Школьный Mersedes", 14, 62)
 
-school_bus2 = Bus("Школный BMW", 45, 238)
+school_bus2 = Bus("Школный BMW", 45, 23)
 
 group_of_buses = [school_bus, school_bus1, school_bus2]
 

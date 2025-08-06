@@ -11,6 +11,11 @@ class Shape(ABC):
     def perimeter(self):
         pass
 
+    def get_shape_info(self):
+        print(f"Тип фигуры: {self._name}")
+        print(f"Периметр: {self.perimeter()}")
+        print(f"Площадь: {self.area()}")
+
     @staticmethod
     def compare_areas(a: "Shape", b: "Shape"):
         area1 = a.area()
@@ -25,6 +30,7 @@ class Shape(ABC):
 
 class Circle(Shape):
     def __init__(self, radius):
+        self._name = "Круг"
         if radius > 0:
             self._radius = radius
         else:
@@ -48,14 +54,13 @@ class Circle(Shape):
         return round(2 * math.pi * self._radius, 2)
 
     def get_shape_info(self):
-        print(f"Тип фигуры: круг")
+        super().get_shape_info()
         print(f"Радиус круга: {self._radius}")
-        print(f"Площадь: {self.area()}")
-        print(f"Периметр: {self.perimeter()}")
 
 
 class Square(Shape):
     def __init__(self, side):
+        self._name = "Квадрат"
         if side > 0:
             self._side = side
         else:
@@ -79,14 +84,13 @@ class Square(Shape):
         return 4 * self._side
 
     def get_shape_info(self):
-        print(f"Тип фигуры: квадрат")
+        super().get_shape_info()
         print(f"Сторона квадрата: {self._side}")
-        print(f"Площадь: {self.area()}")
-        print(f"Периметр: {self.perimeter()}")
 
 
 class Triangle(Shape):
     def __init__(self, side):
+        self._name = "Треугольник"
         if side > 0:
             self._side = side
         else:
@@ -110,10 +114,8 @@ class Triangle(Shape):
         return 3 * self._side
 
     def get_shape_info(self):
-        print(f"Тип фигуры: треугольник")
+        super().get_shape_info()
         print(f"Сторона треугольника: {self._side}")
-        print(f"Площадь: {self.area()}")
-        print(f"Периметр: {self.perimeter()}")
 
 
 circle = Circle(5)
