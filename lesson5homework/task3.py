@@ -13,23 +13,72 @@ class Equipment:
     def __init__(self, name):
         self.name = name
 
+    @abstractmethod
+    def equip(self, character):
+        pass
+
+    @abstractmethod
+    def unequip(self, character):
+        pass
+
+    @abstractmethod
+    def get_equipment_type(self):
+        pass
+
 
 class Weapon(Equipment):
-    def __init__(self, name):
+    def __init__(self, name, base_attack=20):
         super().__init__(name)
-        self.base_attack = 20
+        self.base_attack = base_attack
+
+    def equip(self, character):
+        character.base_attack += self.base_attack
+        return (
+            f"Оружие '{self.name}' экипировано. Атака увеличена на {self.base_attack}"
+        )
+
+    def unequip(self, character):
+        character.base_attack -= self.base_attack
+        return f"Оружие '{self.name}' снято. Атака уменьшена на {self.base_attack}"
+
+    def get_equipment_type(self):
+        return "Оружие"
 
 
 class Armor(Equipment):
-    def __init__(self, name):
+    def __init__(self, name, max_health=100):
         super().__init__(name)
-        self.max_health = 100
+        self.max_health = max_health
+
+    def equip(self, character):
+        character.max_health += self.max_health
+        return (
+            f"Броня '{self.name}' экипирована. Здоровье увеличено на {self.max_health}"
+        )
+
+    def unequip(self, character):
+        character.max_health -= self.max_health
+        return f"Броня '{self.name}' снята. Здоровье уменьшено на {self.max_health}"
+
+    def get_equipment_type(self):
+        return "Броня"
 
 
 class Accessory(Equipment):
-    def __init__(self, name):
+    def __init__(self, name, max_mana=30):
         super().__init__(name)
-        self.max_mana = 30
+        self.max_mana = max_mana
+
+    def equip(self, character):
+        character.max_mana += self.max_mana
+        return f"Аксессуар '{self.name}' экипирован. Запас маны увеличен на {self.max_mana}"
+
+    def unequip(self, character):
+        character.max_mana -= self.max_mana
+        return f"Аксессуар '{self.name}' снят. Запас маны уменьшен на {self.max_mana}"
+
+    def get_equipment_type(self):
+        return "Аксессуар"
 
 
 class Character(ABC):
@@ -46,21 +95,6 @@ class Character(ABC):
         self.critical_attack = 120
         self.equipment = {}
         self.active_effects = []
-
-    @staticmethod
-    def equip_equipment(a: "Equipment", b: "Character"):
-        if isinstance(a, Weapon):
-            b.equipment["Оружие"] = 1
-            b.base_attack += a.base_attack
-            return f"атака увеличена"
-        elif isinstance(a, Armor):
-            b.equipment["Броня"] = 2
-            b.max_health += a.max_health
-            return f"Здорвье увеличино"
-        elif isinstance(a, Accessory):
-            b.equipment["Акссесуар"] = 3
-            b.max_mana += a.max_mana
-            return f"Мана увеличена"
 
     @abstractmethod
     def special_ability(self, target):
